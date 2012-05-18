@@ -11,6 +11,10 @@ class HitmanJob
 end
 
 describe Resque::Hitman do
+  after do
+    Resque::Hitman.deactivate!
+  end
+
   context "not-activated" do
     it "doesn't add a before_fork hook" do
       Resque.before_fork.should be_nil
